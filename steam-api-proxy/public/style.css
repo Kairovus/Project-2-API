@@ -1,0 +1,39 @@
+.primary-accent {
+    background-color: #000814 !important;
+}
+
+.secondary-accent {
+    background-color: #001d3d !important;
+}
+
+.third-accent {
+    background-color: #003566 !important;
+}
+
+.fourth-accent {
+    background-color: #FFC300 !important;
+}
+
+.fifth-accent {
+    background-color: #FFD60A !important;
+}
+
+.primary-text-accent {
+    color: #000814 !important;
+}
+
+.secondary-text-accent {
+    color: #001d3d !important;
+}
+
+.third-text-accent {
+    color: #003566 !important;
+}
+
+.fourth-text-accent {
+    color: #FFC300 !important;
+}
+
+.fifth-text-accent {
+    color: #FFD60A !important;
+}
