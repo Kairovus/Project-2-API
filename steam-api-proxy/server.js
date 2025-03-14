@@ -68,6 +68,19 @@ app.get("/steam/:steamId/friends", async (req, res) => {
   }
 });
 
+// Proxy endpoint to fetch Steam player's detailed game information
+app.get("/steam/:steamId/games/appId", async (req, res) => {
+  try {
+    const { steamId } = req.params;
+    const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${STEAM_API_KEY}&appid=${appId}`;
+    const response = await axios.get(url);
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch game information" });
+  }
+});
+
+
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
 
