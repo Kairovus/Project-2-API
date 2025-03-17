@@ -17,15 +17,10 @@
     <nav
       class="navbar navbar-expand-sm navbar-dark bg-dark primary-accent justify-content-center sticky-top"
     >
-      <div class="container">
+      <div class="container-md">
         <a class="navbar-brand fourth-text-accent" href="#">
-          <img
-            src="../img/Steamify.png"
-            width="50"
-            height="50"
-            class="d-inline-block align-center rounded-circle"
-            alt="logo"
-          />
+          <img src="/img/Steamify.png" width="50" height="50" class="d-inline-block align-center rounded-circle"
+          alt="logo" />
           Steamify
         </a>
 
@@ -40,7 +35,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div
           class="collapse navbar-collapse d-md-flex justify-content-sm-end"
           id="navbarSupportedContent"
@@ -72,13 +66,22 @@
     <!--To Do: Make an About Us Page-->
     <div class="container mt-5">
       <h1 class="text-center mb-4 title">About Steamify</h1>
+      <div class="col d-flex align-items-center justify-content-center">
+        <img
+          class="rounded col-6 object-fit-cover img-fluid"
+          src="../img/game_cards.png"
+          alt="database"
+        />
+      </div>
 
       <!-- What is Steamify -->
-      <div class="row mb-4 gy-3">
-        <div class="col-md-8">
-          <div class="card">
+      <div class="row mb-4 gy-3 mt-3">
+        <div class="col">
+          <div class="card h-100">
+            <!-- Ensures the card is full height -->
             <div class="card-body">
               <h5 class="card-title">What is Steamify?</h5>
+              <br />
               <p class="card-text">
                 Steamify is a web application that allows you to easily access
                 and view Steam player information. Our platform provides a
@@ -88,19 +91,12 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 d-flex align-items-center justify-content-center">
-          <img
-            class="rounded w-100"
-            src="../img/game_cards.png"
-            alt="database"
-          />
-        </div>
       </div>
 
       <!-- Features -->
       <div class="row mb-4 flex-md-row-reverse gy-3">
-        <div class="col-md-8">
-          <div class="card">
+        <div class="col">
+          <div class="card h-100">
             <div class="card-body">
               <h5 class="card-title">Features</h5>
               <ul class="list-group list-group-flush">
@@ -116,14 +112,11 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 d-flex align-items-center justify-content-center">
-          <img class="rounded w-100" src="../img/database.png" alt="database" />
-        </div>
       </div>
 
       <!-- Contact Us -->
       <div class="row mb-4 gy-3">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Contact Us</h5>
@@ -134,9 +127,6 @@
               </p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 d-flex align-items-center justify-content-center">
-          <img class="rounded w-100" src="../img/contact.png" alt="contact" />
         </div>
       </div>
     </div>

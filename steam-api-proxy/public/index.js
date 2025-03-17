@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const button = document.getElementById('fetchButton');
-    const input = document.getElementById('steamIdInput');
+    const input = document.getElementById('steamId');
     const resultDiv = document.getElementById('result');
 
-    button.addEventListener('click', async () => {
+    button.addEventListener('click', async (event) => {
+        event.preventDefault(); // Prevent form from refreshing the page
+
         const steamId = input.value.trim();
         if (!steamId) {
             resultDiv.innerHTML = '<p>Please enter a Steam ID.</p>';
