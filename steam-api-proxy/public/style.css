@@ -55,7 +55,7 @@ body{
 }
 
 .title {
-    font-size: 100px;
+    text-transform: uppercase;
     color: white;
     text-shadow: 3px 3px black;
 }
