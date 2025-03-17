@@ -19,8 +19,13 @@
     >
       <div class="container-md">
         <a class="navbar-brand fourth-text-accent" href="#">
-          <img src="/img/Steamify.png" width="50" height="50" class="d-inline-block align-center rounded-circle"
-          alt="logo" />
+          <img
+            src="/img/Steamify.png"
+            width="50"
+            height="50"
+            class="d-inline-block align-center rounded-circle"
+            alt="logo"
+          />
           Steamify
         </a>
 
@@ -44,9 +49,7 @@
               <a class="nav-link fifth-text-accent" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fifth-text-accent" href="games.html"
-                >Games</a
-              >
+              <a class="nav-link fifth-text-accent" href="games.html">Games</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fifth-text-accent" href="friends.html"
@@ -54,32 +57,88 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link fifth-text-accent" href="about.html"
-                >About</a
-              >
+              <a class="nav-link fifth-text-accent" href="about.html">About</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container mb-5">
       <h1 class="display-5 text-center mt-5 title mb-5">Player Information</h1>
-      <form class="text-center"> 
-        <div class="d-flex justify-content-center"> 
-          <input type="text" class="form-control col-6 text-center" id="steamId" placeholder="Enter Steam ID">
+      <form class="text-center">
+        <div class="d-flex justify-content-center">
+          <input
+            type="text"
+            class="form-control col-6 text-center"
+            id="steamId"
+            placeholder="Enter Steam ID"
+          />
         </div>
-        <div class="d-flex justify-content-center mt-2"> 
-          <button class="btn btn-primary col-5 fifth-accent text-black fw-bold border border-dark" id="fetchButton" type="submit">Fetch Player Data</button>
+        <div class="d-flex justify-content-center mt-2">
+          <button
+            class="btn btn-primary col-5 fifth-accent text-black fw-bold border border-dark"
+            id="fetchButton"
+            type="submit"
+          >
+            Fetch Player Data
+          </button>
         </div>
       </form>
     </div>
-    <div class="result" id="result">
-
+    <div class="container col-5">
+      <div class="card">
+        <div class="row g-0">
+          <div class="col-auto align-self-center">
+            <img
+              src="/img/Steamify.png"
+              class="card-img-top img-fluid img-avatar rounded g-0 m-2"
+              id="avatar"
+              alt="avatar"
+            />
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="card-body">
+                <h5 class="card-title text-center fs-3 mb-3" id="playerName">
+                  Player Name
+                </h5>
+                <div class="col text-center">
+                  <p class="card-text fs-6" id="playerSteamId">Steam ID</p>
+                </div>
+                <div class="col text-center">
+                  <p class="card-text fs-6" id="playerRealName">Real Name</p>
+                </div>
+                <div class="row text-center gy-3 mt-3">
+                  <div class="col">
+                    <p class="card-text fs-6" id="playerStatus">Status</p>
+                  </div>
+                  <div class="col">
+                    <p class="card-text fs-6" id="playerVisibility">
+                      Visibility
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p class="card-text fs-6" id="playerCountry">Location</p>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                  <a
+                    href="#"
+                    class="btn btn-primary col-8 fifth-accent text-black fw-bold border border-dark"
+                    id="playerProfileUrl"
+                    target="_blank"
+                  >
+                    View Profile
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    
-    
+    <div id="result"></div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

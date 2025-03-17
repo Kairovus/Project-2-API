@@ -48,7 +48,7 @@ nav{
 }
 
 body{
-    background-image: url('../img/bg.png');
+    background-image: url('/img/bg.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -60,3 +60,12 @@ body{
     text-shadow: 3px 3px black;
 }
 
+.img-avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.box{
+    background-color: aquamarine;
+}
