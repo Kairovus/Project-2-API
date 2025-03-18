@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const button = document.getElementById("fetchButton");
   const input = document.getElementById("steamId");
   const resultDiv = document.getElementById("result");
-  const gamesContainer = document.getElementById("gamesContainer"); 
+  const gamesContainer = document.getElementById("gamesContainer");
 
   button.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -20,65 +20,82 @@ document.addEventListener("DOMContentLoaded", () => {
       const playerData = await playerResponse.json();
       console.log("Steam Player Data:", playerData);
 
-      if (playerData.response.players.length > 0) {
-        const player = playerData.response.players[0];
+      const gamesResponse = await fetch(`/steam/${steamId}/games`);
+      if (!gamesResponse.ok) throw new Error("Failed to fetch games");
+
+      const gameData = await gamesResponse.json();
+      console.log("Recently Played Games:", gameData);
+
+      if (
+        playerData.response.players.length > 0 &&
+        gameData.response.games.length > 0
+      ) {
+        const player = playerData.response.players[0]; // First player in the response
+        const gamesCount = gameData.response.game_count; // Number of games owned
+        const games = gameData.response.games; // Array of games
 
         document.getElementById("playerName").textContent = player.personaname;
         document.getElementById("avatar").src = player.avatarfull;
         document.getElementById(
           "playerSteamId"
         ).textContent = `Steam ID: ${player.steamid}`;
-        document.getElementById("playerRealName").textContent = `Real Name: ${
-          player.realname || "N/A"
-        }`;
-        document.getElementById("playerCountry").textContent = `Country: ${
-          player.loccountrycode || "Unknown"
-        }`;
-        document.getElementById("playerProfileUrl").href = player.profileurl;
-
-        const statusText = [
-          "Offline",
-          "Online",
-          "Busy",
-          "Away",
-          "Snooze",
-          "Looking to Trade",
-          "Looking to Play",
-        ];
-        document.getElementById("playerStatus").textContent = `Status: ${
-          statusText[player.profilestate] || "Unknown"
-        }`;
-
         const visibilityText = ["Unknown", "Private", "Friends Only", "Public"];
         document.getElementById(
           "playerVisibility"
         ).textContent = `Visibility: ${
           visibilityText[player.communityvisibilitystate] || "Unknown"
         }`;
+        document.getElementById(
+          "playerGameCount"
+        ).textContent = `Game Count: ${gamesCount}`;
       } else {
         resultDiv.innerHTML = "<p>No player found.</p>";
         return;
       }
 
-      const gamesResponse = await fetch(`/steam/${steamId}/recent`);
-      if (!gamesResponse.ok) throw new Error("Failed to fetch games");
-
-      const gameData = await gamesResponse.json();
-      console.log("Recently Played Games:", gameData);
-
       gamesContainer.innerHTML = "";
-
+      const contentWarnings = {
+        1: "Nudity",
+        2: "Violence",
+        3: "Strong Language",
+        4: "Drugs",
+        5: "Gambling",
+        // Add more mappings as needed
+      };
       if (gameData.response.games.length > 0) {
         gameData.response.games.forEach((game) => {
           const gameCard = `
               <div class="col-3">
                 <div class="card h-100 shadow-sm p-2">
-                  <img src="https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg" class="card-img img-fluid" alt="${game.name}" onerror="this.src='https://placehold.co/600x400?text=${game.name}'" style="height: 250px; object-fit: cover;">
+                  <img src="https://steamcdn-a.akamaihd.net/steam/apps/${
+                    game.appid
+                  }/header.jpg" class="card-img img-fluid" alt="${
+            game.name
+          }" onerror="this.src='https://placehold.co/600x400?text=${
+            game.name
+          }'" style="height: 250px; object-fit: cover;">
                   <div class="card-body">
-                    <h5 class="card-title">${game.name}</h5>
-                    <p class="card-text text-muted">Play Time in Last 2 Weeks: ${Math.round(
+                    <h5 class="card-title mb-3">${game.name}</h5>
+                    <p class="card-text text-muted mb-1">Play Time in Last 2 Weeks: ${Math.round(
                       (game.playtime_2weeks || 0) / 60
                     )} hours</p>
+                    <p class="card-text text-muted mb-1">Last Played:  ${
+                      game.rtime_last_played
+                        ? new Date(
+                            game.rtime_last_played * 1000
+                          ).toLocaleDateString()
+                        : "Never"
+                    }</p> 
+                     <p class="card-text text-muted mb-3">Content Warning: ${
+                       game.content_descriptorids &&
+                       game.content_descriptorids.length > 0
+                         ? game.content_descriptorids
+                             .map(
+                               (id) => contentWarnings[id] || `Unknown (${id})`
+                             )
+                             .join(", ")
+                         : "None"
+                     }</p> 
                     <div class="d-flex justify-content-between align-items-center">
                       <small class="text-muted">Total Playtime: ${Math.round(
                         game.playtime_forever / 60

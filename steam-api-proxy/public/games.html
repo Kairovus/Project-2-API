@@ -15,61 +15,179 @@
 
   <body>
     <nav
-    class="navbar navbar-expand-sm navbar-dark bg-dark primary-accent justify-content-center sticky-top"
-  >
-    <div class="container-md">
-      <a class="navbar-brand fourth-text-accent" href="#">
-        <img src="img/Steamify.png" width="50" height="50" class="d-inline-block align-center rounded-circle"
-        alt="logo" />
-        Steamify
-      </a>
+      class="navbar navbar-expand-sm navbar-dark bg-dark primary-accent justify-content-center sticky-top"
+    >
+      <div class="container-md">
+        <a class="navbar-brand fourth-text-accent" href="#">
+          <img
+            src="img/Steamify.png"
+            width="50"
+            height="50"
+            class="d-inline-block align-center rounded-circle"
+            alt="logo"
+          />
+          Steamify
+        </a>
 
-      <button
-        class="navbar-toggler fourth-text-accent"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="collapse navbar-collapse d-md-flex justify-content-sm-end"
-        id="navbarSupportedContent"
-      >
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link fifth-text-accent" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fifth-text-accent" href="games.html"
-              >Games</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fifth-text-accent" href="friends.html"
-              >Friends</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fifth-text-accent" href="about.html"
-              >About</a
-            >
-          </li>
-        </ul>
+        <button
+          class="navbar-toggler fourth-text-accent"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse d-md-flex justify-content-sm-end"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link fifth-text-accent" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fifth-text-accent" href="games.html">Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fifth-text-accent" href="friends.html"
+                >Friends</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fifth-text-accent" href="about.html">About</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
     <!-- To do: Display The list of games owned by the player -->
+    <div class="container player-container col-4 mb-5">
+      <h1 class="display-5 text-center mt-5 title mb-5">Player Information</h1>
+      <form class="text-center">
+        <div class="d-flex justify-content-center">
+          <input
+            type="text"
+            class="form-control col-6 text-center"
+            id="steamId"
+            placeholder="Enter Steam ID"
+          />
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+          <button
+            class="btn btn-primary col-7 fifth-accent text-black fw-bold border border-dark"
+            id="fetchButton"
+            type="submit"
+          >
+            Fetch Player Data
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="container col-4">
+      <div class="card p-4 shadow-sm border-0">
+        <div class="row g-0">
+          <div
+            class="col-auto d-flex justify-content-center align-items-center"
+          >
+            <div class="position-relative">
+              <img
+                src="img/Steamify.png"
+                class="img-fluid rounded-circle border border-3 border-primary"
+                id="avatar"
+                alt="avatar"
+                style="
+                  width: 120px;
+                  height: 120px;
+                  object-fit: cover;
+                  display: block;
+                  margin: 0 auto;
+                "
+              />
+              <span
+                class="position-absolute bottom-0 end-0 bg-success rounded-circle p-2 border border-2 border-white"
+                style="width: 20px; height: 20px"
+              ></span>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-body ps-4">
+              <h5
+                class="card-title text-center fs-3 mb-4"
+                id="playerName"
+                style="color: black; font-weight: 600"
+              >
+                Player Name
+              </h5>
+              <div class="d-flex flex-column gap-3">
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-steam me-2"></i>
+                  <p
+                    class="card-text mb-0"
+                    id="playerSteamId"
+                    style="color: black"
+                  >
+                    SteamId
+                  </p>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-eye me-2"></i>
+                  <p
+                    class="card-text mb-0"
+                    id="playerVisibility"
+                    style="color: black"
+                  >
+                    Visibility
+                  </p>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-controller me-2"></i>
+                  <p
+                    class="card-text mb-0"
+                    id="playerGameCount"
+                    style="color: black"
+                  >
+                    Game Count
+                  </p>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-5 mt-5 align-items-end">
+      <h1 class="display-6 text-center mt-5 title mb-2">All Owned Games</h1>
+      <div class="input-group mb-3 w-25 h-25">
+        <input
+          type="text"
+          class="form-control border-dark fw-bold"
+          placeholder="Search Game Name"
+        />
+        <button class="btn btn-outline-secondary border-dark bg-dark fw-bold">
+          Button
+        </button>
+      </div>
+    </div>
+    <div
+      class="row row-cols-1 row-cols-md-3 g-4 justify-content-center m-5"
+      id="gamesContainer"
+    >
+      <!-- Game Cards will be inserted here dynamically -->
+    </div>
+    <div class="container text-black" id="result"></div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="index.js"></script>
+    <script src="games.js"></script>
   </body>
 </html>
