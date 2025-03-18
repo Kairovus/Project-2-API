@@ -60,8 +60,82 @@
     </form>
   </div>
 
-  <div class="container px-4 mt-5">
-    <div class="row gap-2 d-flex justify-content-center" id="friendContainer">
+  <div class="container col-4">
+    <div class="card p-4 shadow-sm border-0">
+      <div class="row g-0">
+        <div
+          class="col-auto d-flex justify-content-center align-items-center"
+        >
+          <div class="position-relative">
+            <img
+              src="img/Steamify.png"
+              class="img-fluid rounded-circle border border-3 border-primary"
+              id="avatar"
+              alt="avatar"
+              style="
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+                display: block;
+                margin: 0 auto;
+              "
+            />
+            <span
+              class="position-absolute bottom-0 end-0 bg-success rounded-circle p-2 border border-2 border-white"
+              style="width: 20px; height: 20px"
+            ></span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card-body ps-4">
+            <h5
+              class="card-title text-center fs-3 mb-4"
+              id="playerName"
+              style="color: black; font-weight: 600"
+            >
+              Player Name
+            </h5>
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-steam me-2"></i>
+                <p
+                  class="card-text mb-0"
+                  id="playerSteamId"
+                  style="color: black"
+                >
+                  SteamId
+                </p>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-eye me-2"></i>
+                <p
+                  class="card-text mb-0"
+                  id="playerVisibility"
+                  style="color: black"
+                >
+                  Visibility
+                </p>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-controller me-2"></i>
+                <p
+                  class="card-text mb-0"
+                  id="playerFriends"
+                  style="color: black"
+                >
+                  Friends
+                </p>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row gap-5 d-flex justify-content-center" id="friendContainer">
 
     </div>
 
