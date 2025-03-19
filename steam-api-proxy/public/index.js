@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(
           "playerVisibility"
         ).textContent = `Visibility: ${visibilityText[player.communityvisibilitystate] || "Unknown"
-          }`;
+        }`;
       } else {
         resultDiv.innerHTML = "<p>No player found.</p>";
         return;
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (gameData.response.games.length > 0) {
         gameData.response.games.forEach((game) => {
           const gameCard = `
-              <div class="col-3">
+              <div class="col-lg-4 col-md-6 col">
               <a href="https://store.steampowered.com/app/${game.appid}" style=text-decoration:none; target="_blank">
                 <div class="card h-100 shadow-sm p-2">
                   <img src="https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg" class="card-img img-fluid" alt="${game.name}" onerror="this.src='https://placehold.co/600x400?text=${game.name}'" style="height: 250px; object-fit: cover;">
