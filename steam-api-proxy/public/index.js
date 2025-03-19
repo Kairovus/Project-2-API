@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const button = document.getElementById("fetchButton");
   const input = document.getElementById("steamId");
   const resultDiv = document.getElementById("result");
-  const gamesContainer = document.getElementById("gamesContainer"); 
+  const gamesContainer = document.getElementById("gamesContainer");
 
   button.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -28,12 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(
           "playerSteamId"
         ).textContent = `Steam ID: ${player.steamid}`;
-        document.getElementById("playerRealName").textContent = `Real Name: ${
-          player.realname || "N/A"
-        }`;
-        document.getElementById("playerCountry").textContent = `Country: ${
-          player.loccountrycode || "Unknown"
-        }`;
+        document.getElementById("playerRealName").textContent = `Real Name: ${player.realname || "N/A"
+          }`;
+        document.getElementById("playerCountry").textContent = `Country: ${player.loccountrycode || "Unknown"
+          }`;
         document.getElementById("playerProfileUrl").href = player.profileurl;
 
         const statusText = [
@@ -45,16 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
           "Looking to Trade",
           "Looking to Play",
         ];
-        document.getElementById("playerStatus").textContent = `Status: ${
-          statusText[player.profilestate] || "Unknown"
-        }`;
+        document.getElementById("playerStatus").textContent = `Status: ${statusText[player.profilestate] || "Unknown"
+          }`;
 
         const visibilityText = ["Unknown", "Private", "Friends Only", "Public"];
         document.getElementById(
           "playerVisibility"
-        ).textContent = `Visibility: ${
-          visibilityText[player.communityvisibilitystate] || "Unknown"
-        }`;
+        ).textContent = `Visibility: ${visibilityText[player.communityvisibilitystate] || "Unknown"
+          }`;
       } else {
         resultDiv.innerHTML = "<p>No player found.</p>";
         return;
@@ -72,21 +68,23 @@ document.addEventListener("DOMContentLoaded", () => {
         gameData.response.games.forEach((game) => {
           const gameCard = `
               <div class="col-3">
+              <a href="https://store.steampowered.com/app/${game.appid}" style=text-decoration:none; target="_blank">
                 <div class="card h-100 shadow-sm p-2">
                   <img src="https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg" class="card-img img-fluid" alt="${game.name}" onerror="this.src='https://placehold.co/600x400?text=${game.name}'" style="height: 250px; object-fit: cover;">
                   <div class="card-body">
                     <h5 class="card-title">${game.name}</h5>
                     <p class="card-text text-muted">Play Time in Last 2 Weeks: ${Math.round(
-                      (game.playtime_2weeks || 0) / 60
-                    )} hours</p>
+            (game.playtime_2weeks || 0) / 60
+          )} hours</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <small class="text-muted">Total Playtime: ${Math.round(
-                        game.playtime_forever / 60
-                      )} hours</small>
+            game.playtime_forever / 60
+          )} hours</small>
                       <span class="badge bg-success">${game.appid}</span>
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             `;
 

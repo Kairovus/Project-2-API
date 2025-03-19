@@ -42,8 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const visibilityText = ["Unknown", "Private", "Friends Only", "Public"];
         document.getElementById(
           "playerVisibility"
-        ).textContent = `Visibility: ${
-          visibilityText[player.communityvisibilitystate] || "Unknown"
+        ).textContent = `Visibility: ${visibilityText[player.communityvisibilitystate] || "Unknown"
         }`;
         document.getElementById(
           "playerGameCount"
@@ -65,45 +64,42 @@ document.addEventListener("DOMContentLoaded", () => {
       if (gameData.response.games.length > 0) {
         gameData.response.games.forEach((game) => {
           const gameCard = `
-              <div class="col-3">
+              <div class="col-3"> 
+              <a href="https://store.steampowered.com/app/${game.appid}" style=text-decoration:none; target="_blank">
                 <div class="card h-100 shadow-sm p-2">
-                  <img src="https://steamcdn-a.akamaihd.net/steam/apps/${
-                    game.appid
-                  }/header.jpg" class="card-img img-fluid" alt="${
-            game.name
-          }" onerror="this.src='https://placehold.co/600x400?text=${
-            game.name
-          }'" style="height: 250px; object-fit: cover;">
+                  <img src="https://steamcdn-a.akamaihd.net/steam/apps/${game.appid
+            }/header.jpg" class="card-img img-fluid" alt="${game.name
+            }" onerror="this.src='https://placehold.co/600x400?text=${game.name
+            }'" style="height: 250px; object-fit: cover;">
                   <div class="card-body">
                     <h5 class="card-title mb-3">${game.name}</h5>
                     <p class="card-text text-muted mb-1">Play Time in Last 2 Weeks: ${Math.round(
-                      (game.playtime_2weeks || 0) / 60
-                    )} hours</p>
-                    <p class="card-text text-muted mb-1">Last Played:  ${
-                      game.rtime_last_played
-                        ? new Date(
-                            game.rtime_last_played * 1000
-                          ).toLocaleDateString()
-                        : "Never"
-                    }</p> 
-                     <p class="card-text text-muted mb-3">Content Warning: ${
-                       game.content_descriptorids &&
-                       game.content_descriptorids.length > 0
-                         ? game.content_descriptorids
-                             .map(
-                               (id) => contentWarnings[id] || `Unknown (${id})`
-                             )
-                             .join(", ")
-                         : "None"
-                     }</p> 
+              (game.playtime_2weeks || 0) / 60
+            )} hours</p>
+                    <p class="card-text text-muted mb-1">Last Played:  ${game.rtime_last_played
+              ? new Date(
+                game.rtime_last_played * 1000
+              ).toLocaleDateString()
+              : "Never"
+            }</p> 
+                     <p class="card-text text-muted mb-3">Content Warning: ${game.content_descriptorids &&
+              game.content_descriptorids.length > 0
+              ? game.content_descriptorids
+                .map(
+                  (id) => contentWarnings[id] || `Unknown (${id})`
+                )
+                .join(", ")
+              : "None"
+            }</p> 
                     <div class="d-flex justify-content-between align-items-center">
                       <small class="text-muted">Total Playtime: ${Math.round(
-                        game.playtime_forever / 60
-                      )} hours</small>
+              game.playtime_forever / 60
+            )} hours</small>
                       <span class="badge bg-success">${game.appid}</span>
                     </div>
                   </div>
                 </div>
+                </a>
               </div>
             `;
 
