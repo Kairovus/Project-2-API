@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!searchTerm) {
       // If search is empty, show all friends
+      friendContainer.innerHTML = ""; // Clear the container first
       displayFriends(allFriends);
       return;
     }
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   fetchButton.addEventListener("click", async (event) => {
-    event.preventDefault(); // Prevent form submission from reloading page
+    event.preventDefault();
 
     const steamId = steamIdInput.value.trim();
     if (!steamId) {
@@ -51,6 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
+      // Show loading state
+      friendContainer.innerHTML = '<div class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
+      
       // Fetch Steam player profile data
       const playerResponse = await fetch(`/steam/${steamId}`);
       if (!playerResponse.ok) throw new Error("Failed to fetch player data");
@@ -69,50 +73,39 @@ document.addEventListener("DOMContentLoaded", () => {
       searchBarContainer.innerHTML = "";
       allFriends = []; // Reset friends data
 
-      if (
-        playerData.response.players.length > 0 &&
-        friendsData.friendslist.friends.length > 0
-      ) {
+      if (playerData.response.players.length > 0) {
         const player = playerData.response.players[0];
 
+        // Update player card immediately
         document.getElementById("playerName").textContent = player.personaname;
         document.getElementById("avatar").src = player.avatarfull;
-        document.getElementById(
-          "playerSteamId"
-        ).textContent = `Steam ID: ${player.steamid}`;
+        document.getElementById("playerSteamId").textContent = `Steam ID: ${player.steamid}`;
         const visibilityText = ["Unknown", "Private", "Friends Only", "Public"];
-        document.getElementById(
-          "playerVisibility"
-        ).textContent = `Visibility: ${visibilityText[player.communityvisibilitystate] || "Unknown"
-        }`;
-        document.getElementById(
-          "playerFriends"
-        ).textContent = `Friends: ${friendsData.friendslist.friends.length}`;
+        document.getElementById("playerVisibility").textContent = 
+          `Visibility: ${visibilityText[player.communityvisibilitystate] || "Unknown"}`;
+        document.getElementById("playerFriends").textContent = 
+          `Friends: ${friendsData.friendslist.friends.length}`;
 
-        // Create an array to store all friend data after fetching
-        const friendsPromises = friendsData.friendslist.friends.map(async (friend) => {
-          // For each friend, fetch their profile data (this includes their avatar and username)
-          const friendResponse = await fetch(`/steam/${friend.steamid}`);
-          const friendData = await friendResponse.json();
-
-          if (friendData.response.players.length > 0) {
-            const friendProfile = friendData.response.players[0];
-            // Add the friend since data to the friend profile object
-            friendProfile.friend_since = friend.friend_since;
-            friendProfile.steamid = friend.steamid;
-            return friendProfile;
+        // If there are friends, load them in batches
+        if (friendsData.friendslist.friends.length > 0) {
+          const BATCH_SIZE = 10; // Number of friends to load at once
+          const friends = friendsData.friendslist.friends;
+          
+          // Load first batch immediately
+          await loadFriendBatch(friends.slice(0, BATCH_SIZE));
+          
+          // Load remaining batches if any
+          if (friends.length > BATCH_SIZE) {
+            for (let i = BATCH_SIZE; i < friends.length; i += BATCH_SIZE) {
+              const batch = friends.slice(i, i + BATCH_SIZE);
+              await loadFriendBatch(batch);
+            }
           }
-          return null;
-        });
-
-        // Wait for all friend data to be fetched
-        const fetchedFriends = await Promise.all(friendsPromises);
-        allFriends = fetchedFriends.filter(friend => friend !== null);
-
-        // Display all friends initially
-        displayFriends(allFriends);
+        } else {
+          friendContainer.innerHTML = "<p>No friends found.</p>";
+        }
       } else {
-        friendContainer.innerHTML = "<p>No player or friends found.</p>";
+        friendContainer.innerHTML = "<p>No player found.</p>";
       }
     } catch (error) {
       console.error("Error fetching Steam data:", error);
@@ -120,10 +113,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Function to load a batch of friends
+  async function loadFriendBatch(friends) {
+    const batchPromises = friends.map(async (friend) => {
+      try {
+        const friendResponse = await fetch(`/steam/${friend.steamid}`);
+        const friendData = await friendResponse.json();
+
+        if (friendData.response.players.length > 0) {
+          const friendProfile = friendData.response.players[0];
+          friendProfile.friend_since = friend.friend_since;
+          friendProfile.steamid = friend.steamid;
+          return friendProfile;
+        }
+      } catch (error) {
+        console.error(`Error fetching friend ${friend.steamid}:`, error);
+      }
+      return null;
+    });
+
+    const batchResults = await Promise.all(batchPromises);
+    const validFriends = batchResults.filter(friend => friend !== null);
+    allFriends = [...allFriends, ...validFriends];
+    
+    // Display the new batch of friends
+    displayFriends(validFriends);
+  }
+
   // Function to display friends
   function displayFriends(friendsToDisplay) {
-    friendContainer.innerHTML = ""; // Clear current display
-
+    // Clear the container if this is a new search
+    if (searchInput.value.trim()) {
+      friendContainer.innerHTML = "";
+    }
+    
     friendsToDisplay.forEach(friendProfile => {
       const unixTimestamp = friendProfile.friend_since;
       const friendSince = new Date(unixTimestamp * 1000);
