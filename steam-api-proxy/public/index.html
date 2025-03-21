@@ -27,10 +27,10 @@
       <div class="collapse navbar-collapse d-md-flex justify-content-sm-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link fifth-text-accent" href="home.html">Home</a>
+            <a class="nav-link fifth-text-accent" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fifth-text-accent" href="index.html">Player</a>
+            <a class="nav-link fifth-text-accent" href="player.html">Player</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fifth-text-accent" href="games.html">Games</a>
@@ -46,92 +46,101 @@
     </div>
   </nav>
 
-  <div class="container col-lg-4 col-12 mb-5">
-    <h1 class="display-5 text-center mt-5 title mb-5">Player Information</h1>
-    <form class="text-center">
-      <div class="d-flex justify-content-center">
-        <input type="text" class="form-control col-lg-6 col-12 text-center" id="steamId" placeholder="Enter Steam ID" />
-      </div>
-      <div class="d-flex justify-content-center mt-2">
-        <button class="btn btn-primary col-lg-7 col-12 fifth-accent text-black fw-bold border border-dark" id="fetchButton"
-          type="submit">
-          Fetch Player Data
-        </button>
-      </div>
-    </form>
-  </div>
+  <div class="container mt-5">
+    <h1 class="text-center title">About Steamify</h1>
+    <div class="container hero-section mb-2">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6 card p-4">
+          <div class="subtitle text-black">How It Started</div>
+          <h1 class="main-title text-black">
+            Our Dream is Gaming Community Integration
+          </h1>
+          <p class="description text-black">
+            Steamify emerged from a simple vision: to make Steam profiles more
+            accessible and meaningful. Our platform bridges the gap between
+            gamers, providing an intuitive interface to explore gaming
+            libraries, track achievements, and connect with the broader Steam
+            community.
+          </p>
 
-  <div class="container col-lg-4 col-12">
-    <div class="card p-2 shadow-sm border-0">
-      <div class="row g-0">
-        <div class="col-auto d-flex justify-content-center align-items-center">
-          <div class="position-relative">
-            <img src="img/Steamify.png" class="img-fluid rounded-circle border border-3 border-primary" id="avatar"
-              alt="avatar" style="
-                  width: 120px;
-                  height: 120px;
-                  object-fit: cover;
-                  display: block;
-                  margin: 0 auto;
-                " />
-            <span class="position-absolute bottom-0 end-0 bg-success rounded-circle p-2 border border-2 border-white"
-              style="width: 20px; height: 20px"></span>
+          <div class="d-flex stats-container text-black gap-5 fw-bolder">
+            <div>
+              <div class="stat-number">100K+</div>
+              <div class="stat-label">Active Users</div>
+            </div>
+            <div>
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Games Tracked</div>
+            </div>
+            <div>
+              <div class="stat-number">4.8</div>
+              <div class="stat-label">User Rating</div>
+            </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card-body ps-4">
-            <h5 class="card-title text-center fs-3 mb-4" id="playerName" style="color: black; font-weight: 600">
-              Player Name
-            </h5>
-            <div class="d-flex flex-column gap-3">
-              <div class="d-flex align-items-center">
-                <i class="bi bi-steam me-2"></i>
-                <p class="card-text mb-0" id="playerSteamId" style="color: black">
-                  Steam ID
-                </p>
-              </div>
-              <div class="d-flex align-items-center">
-                <i class="bi bi-person me-2"></i>
-                <p class="card-text mb-0" id="playerRealName" style="color: black">
-                  Real Name
-                </p>
-              </div>
-              <div class="d-flex align-items-center">
-                <i class="bi bi-circle-fill me-2"></i>
-                <p class="card-text mb-0" id="playerStatus" style="color: black">
-                  Status
-                </p>
-              </div>
-              <div class="d-flex align-items-center">
-                <i class="bi bi-eye me-2"></i>
-                <p class="card-text mb-0" id="playerVisibility" style="color: black">
-                  Visibility
-                </p>
-              </div>
-              <div class="d-flex align-items-center">
-                <i class="bi bi-geo-alt me-2"></i>
-                <p class="card-text mb-0" id="playerCountry" style="color: black">
-                  Location
-                </p>
-              </div>
-            </div>
-            <div class="mt-4 d-flex justify-content-center">
-              <a href="#" class="btn btn-primary fifth-accent text-black fw-bold border border-dark px-4 col-12"
-                id="playerProfileUrl" target="_blank">
-                View Profile
-              </a>
-            </div>
+
+        <div class="col-lg-6">
+          <div class="hero-image d-flex align-items-center justify-content-center shadow-lg">
+            <img src="img/game_cards.png" alt="Gaming Community"
+              onerror="this.src='https://placehold.co/600x400?text=Gaming+Community'" class="img-fluid rounded" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4 gy-3 mt-3">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">What is Steamify?</h5>
+            <br />
+            <p class="card-text">
+              Steamify is a web application that allows you to easily access
+              and view Steam player information. Our platform provides a
+              simple and intuitive interface to check Steam profiles, game
+              libraries, and connect with friends in the Steam community.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4 flex-md-row-reverse gy-3">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Features</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                View detailed Steam profile information
+              </li>
+              <li class="list-group-item">
+                Browse game libraries and achievements
+              </li>
+              <li class="list-group-item">Connect with Steam friends</li>
+              <li class="list-group-item">Track gaming statistics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="row mb-4 gy-3">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Contact Us</h5>
+            <p class="card-text">
+              Have questions or suggestions? Feel free to reach out to us:
+              <br />Email: contact@steamify.com <br />Twitter: @Steamify
+              <br />Discord: Steamify Community
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <h1 class="display-6 text-center mt-5 title mb-2">Recently Played Games</h1>
-  <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center m-5" id="gamesContainer">
-    <!-- Game Cards will be inserted here dynamically -->
-  </div>
-  <div class="container text-black" id="result"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
