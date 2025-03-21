@@ -69,3 +69,32 @@ body{
 .box{
     background-color: aquamarine;
 }
+
+.hero-section {
+    background: url('img/game_cards.png') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0; /* Adjust padding as needed */
+    color: white;
+    position: relative;
+}
+
+.hero-section .card {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.card-info{
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+
+@media (max-width: 992px) {
+    .hero-section {
+        background-position: center;
+    }
+    .hero-section .card {
+        text-align: center;
+    }
+}
