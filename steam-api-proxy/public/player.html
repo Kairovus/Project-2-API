@@ -46,14 +46,16 @@
     </div>
   </nav>
 
-  <div class="container col-lg-4 col-12 mb-5">
+  <div class="container col-lg-8 col-12 mb-5">
     <h1 class="display-5 text-center mt-5 title mb-5">Player Information</h1>
     <form class="text-center">
       <div class="d-flex justify-content-center">
-        <input type="text" class="form-control col-lg-6 col-12 text-center" id="steamId" placeholder="Enter Steam ID" />
+        <div class="col-9">
+          <input type="text" class="form-control text-center" id="steamId" placeholder="Enter Steam ID" />
+        </div>
       </div>
       <div class="d-flex justify-content-center mt-2">
-        <button class="btn btn-primary col-lg-7 col-12 fifth-accent text-black fw-bold border border-dark" id="fetchButton"
+        <button class="btn btn-primary col-9 fifth-accent text-black fw-bold border border-dark" id="fetchButton"
           type="submit">
           Fetch Player Data
         </button>
@@ -61,7 +63,7 @@
     </form>
   </div>
 
-  <div class="container col-lg-4 col-12">
+  <div class="container col-lg-6 col-sm-9 col-12">
     <div class="card p-2 shadow-sm border-0">
       <div class="row g-0">
         <div class="col-auto d-flex justify-content-center align-items-center">
