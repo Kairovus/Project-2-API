@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 // Enable CORS
 app.use(cors());
-const STEAM_API_KEY = "A6434BB4FD112148304538AABC377FDD";
+const STEAM_API_KEY = "YOUR_STEAM_API_KEY";
 
 // Proxy endpoint to fetch Steam player data
 app.get("/steam/:steamId", async (req, res) => {
